@@ -5,42 +5,55 @@
   --breakpoint-3xl: 1920px;
   --breakpoint-xs: 420px;
 
-  /* Primary Background */
-  --color-primary-100: oklch(0.12 0.02 250); /* Deep Dark Blue */
-  --color-primary-200: oklch(0.18 0.03 250); /* Slightly lighter */
+  --color-primary-100: #02060d;
+  --color-primary-200: #07121e;
 
-  /* Secondary UI Elements */
-  --color-secondary-100: oklch(0.35 0.06 250); /* Charcoal Gray */
-  --color-secondary-200: oklch(0.42 0.08 250); /* Light Grayish Background */
+  --color-secondary-100: #213c59;
+  --color-secondary-200: #285077;
 
-  /* Neon Accents */
-  --color-accent-blue: oklch(0.65 0.25 270); /* Neon Blue */
-  --color-accent-purple: oklch(0.7 0.3 300); /* Electric Purple */
-  --color-accent-green: oklch(0.85 0.3 150); /* Neon Green */
-  --color-accent-yellow: oklch(0.85 0.28 90); /* Cyber Yellow */
+  --color-accent-blue: #6080ff;
+  --color-accent-purple: #b577ff;
+  --color-accent-green: #00fa63;
+  --color-accent-yellow: #fec500;
 
-  /* Text */
-  --color-text-primary: oklch(0.98 0 0); /* Pure White */
-  --color-text-secondary: oklch(0.85 0.02 250); /* Light Gray */
-  --color-text-muted: oklch(0.7 0.01 250); /* Muted Text */
+  --color-text-primary: #f8f8f8;
+  --color-text-secondary: #c4cfdb;
+  --color-text-muted: #9a9fa5;
 }
+
 @layer components {
   .main-container {
     @apply w-full xl:max-w-[1320px] lg:max-w-[1080px] md:max-w-4xl sm:max-w-2xl xs:max-w-xl xs:p-2;
   }
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
 body {
-  margin: 0;
   font-family: var(--font-main);
   background-color: var(--color-primary-100);
   color: var(--color-text-primary);
   display: flex;
   flex-direction: column;
+}
+.bg-gradient {
+  background: rgb(68, 26, 125);
+  background: linear-gradient(
+    169deg,
+    rgba(68, 26, 125, 1) 1%,
+    rgba(7, 18, 30, 1) 8%,
+    rgba(2, 6, 13, 1) 92%,
+    rgba(117, 41, 209, 1) 99%
+  );
+}
+.bg-gradient-2 {
+  background: rgb(50, 17, 96);
+  background: linear-gradient(
+    169deg,
+    rgba(50, 17, 96, 1) 1%,
+    rgba(7, 18, 30, 1) 4%,
+    rgba(2, 6, 13, 1) 40%,
+    rgba(17, 8, 33, 1) 59%,
+    rgba(60, 28, 102, 1) 77%,
+    rgba(65, 22, 117, 1) 86%,
+    rgba(117, 41, 209, 1) 96%
+  );
 }
