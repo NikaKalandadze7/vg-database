@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-main: "Oswald", "Poppins", sans-serif;
+  --font-main: arial, "Oswald", "Poppins", sans-serif;
   --breakpoint-3xl: 1920px;
   --breakpoint-xs: 420px;
 
