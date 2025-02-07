@@ -57,3 +57,6 @@ body {
     rgba(117, 41, 209, 1) 96%
   );
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
