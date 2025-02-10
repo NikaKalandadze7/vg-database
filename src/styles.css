@@ -13,6 +13,7 @@
 
   --color-accent-blue: #6080ff;
   --color-accent-purple: #b577ff;
+  --color-accent-purple-2: #8000ff;
   --color-accent-green: #00fa63;
   --color-accent-yellow: #fec500;
 
@@ -57,6 +58,38 @@ body {
     rgba(117, 41, 209, 1) 96%
   );
 }
+.bg-gradient-3 {
+  background: rgb(2, 6, 13);
+  background: linear-gradient(
+    315deg,
+    rgba(2, 6, 13, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(7, 18, 30, 1) 80%,
+    rgba(128, 0, 255, 1) 100%
+  );
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.mat-icon.account-circle-icon {
+  font-size: 48px;
+  color: var(--color-accent-blue);
+  height: 52px;
+  width: 52px;
+}
+.account-circle.mat-mdc-icon-button .mat-mdc-button-touch-target,
+.account-circle.mat-mdc-icon-button .mat-focus-indicator,
+.account-circle.mat-mdc-icon-button .mat-mdc-button-ripple,
+.account-circle.mat-mdc-icon-button {
+  height: 52px;
+  width: 52px;
+}
+.mat-icon.account-circle-icon:hover {
+  color: var(--color-accent-green);
+}

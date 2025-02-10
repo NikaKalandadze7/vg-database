@@ -3,7 +3,7 @@
     class="h-8 absolute top-0 left-0 right-0 bg-black/70 p-2 text-white translate-y-[-100%] transition-all duration-300 group-hover:opacity-100 group-hover:z-50 group-hover:translate-y-0"
   >
     <span class="text-center opacity-100 text-text-secondary text-xs">
-      Release Date: {{ item.released }}
+      Released: {{ item.released | date : "dd/MM/yyyy" }}
     </span>
   </div>
   <img
@@ -25,3 +25,15 @@
     <app-star-rating [rating]="item.rating" />
   </div>
 </a>
+<div class="flex flex-row gap-2">
+  <span
+    class="inline-flex items-center rounded-md bg-accent-blue px-2 py-1 text-xs font-medium text-text-primary ring-1 ring-gray-500/10 ring-inset"
+    >{{ item.genres[0].name }}</span
+  >
+  <div *ngIf="item.genres.length > 1">
+    <span
+      class="inline-flex items-center rounded-md bg-accent-purple px-2 py-1 text-xs font-medium text-text-primary ring-1 ring-gray-500/10 ring-inset"
+      >{{ item.genres[1].name }}</span
+    >
+  </div>
+</div>
