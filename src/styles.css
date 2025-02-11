@@ -5,9 +5,9 @@
   --breakpoint-3xl: 1920px;
   --breakpoint-xs: 420px;
 
-  --color-primary-100: #02060d;
+  --color-primary-100: #202020;
   --color-primary-200: #07121e;
-
+  --color-primary-300: #000000;
   --color-secondary-100: #213c59;
   --color-secondary-200: #285077;
 
@@ -92,4 +92,7 @@ body {
 }
 .mat-icon.account-circle-icon:hover {
   color: var(--color-accent-green);
+}
+.nav-logo {
+  font-size: 30px;
 }

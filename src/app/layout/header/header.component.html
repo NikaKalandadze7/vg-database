@@ -1,4 +1,4 @@
-<div class="flex items-center h-24 px-6 bg-gradient-2 w-full justify-between">
+<div class="flex items-center h-24 px-6 bg-primary-300 w-full justify-between">
   <div class="w-[40%]">
     <div class="relative w-full">
       <input
@@ -37,24 +37,20 @@
       </div>
     </div>
   </div>
-  <div class="mr-24 lg:mr-16 md:mr-8 sm:mr-5">
+  <div class="mr-24 lg:mr-16 md:mr-8 sm:mr-5 flex flex-row gap-4">
     <button
-      mat-icon-button
-      [matMenuTriggerFor]="beforeMenu"
-      aria-label="Example icon-button with a menu"
-      class="account-circle"
+      mat-menu-item
+      class="rounded-md px-3 py-2 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-1 items-center cursor-pointer w-full p-2"
     >
-      <mat-icon class="account-circle-icon">account_circle</mat-icon>
+      <mat-icon>person</mat-icon>
+      <span>Log In</span>
     </button>
-    <mat-menu #beforeMenu="matMenu" xPosition="before">
-      <button mat-menu-item>
-        <mat-icon>person</mat-icon>
-        <span>Log In</span>
-      </button>
-      <button mat-menu-item>
-        <mat-icon>person_add</mat-icon>
-        <span>Register</span>
-      </button>
-    </mat-menu>
+    <button
+      mat-menu-item
+      class="rounded-md px-3 py-2 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-1 items-center cursor-pointer w-full p-2"
+    >
+      <mat-icon>person_add</mat-icon>
+      <span>Register</span>
+    </button>
   </div>
 </div>

@@ -2,14 +2,15 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { queryParams } from '../interfaces/queryParams.interface';
+import { API_KEY, API_URL } from '../../shared/api.consts';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GamesService {
   constructor(private http: HttpClient) {}
-  private readonly URL: string = 'https://api.rawg.io/api';
-  private readonly API_KEY: string = '0f86bbcc3caf48169da110085b82181f';
+  private readonly URL: string = API_URL;
+  private readonly API_KEY: string = API_KEY;
 
   getGames(queryParams?: queryParams): Observable<any> {
     let params = new HttpParams().set('key', this.API_KEY);

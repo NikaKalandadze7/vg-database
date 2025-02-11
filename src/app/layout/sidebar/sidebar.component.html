@@ -1,50 +1,52 @@
-<aside class="h-full p-4 text-text-primary m-14">
-  <a class="text-xl font-semibold mb-8 cursor-pointer" routerLink="home"
+<aside class="h-full p-4 text-text-primary flex flex-col gap-14 bg-primary-300">
+  <a
+    class="text-2xl font-semibold mb-8 cursor-pointer w-full p-2 hover:text-accent-purple-2"
+    routerLink="home"
     >Game DB</a
   >
-  <nav class="space-y-2">
-    <div class="ml-5 flex flex-col gap-1 items-baseline space-x-4">
-      <a
-        routerLink="games"
-        routerLinkActive="router-link-active"
-        class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 text-white flex flex-row gap-1 justify-center items-center cursor-pointer"
-        aria-current="page"
-      >
-        <span class="material-symbols-outlined"> sports_esports </span
-        ><span>Games</span></a
-      >
-      <a
-        routerLink="games"
-        class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 text-white flex flex-row gap-1 justify-center items-center cursor-pointer"
-        aria-current="page"
-      >
-        <span class="material-symbols-outlined"> code_blocks </span>
-        <span>Developers</span></a
-      >
-      <a
-        routerLink="games"
-        class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 text-white flex flex-row gap-1 justify-center items-center cursor-pointer"
-        aria-current="page"
-      >
-        <span class="material-symbols-outlined"> gamepad </span>
-        <span>Genres</span></a
-      >
-      <a
-        routerLink="games"
-        class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 text-white flex flex-row gap-1 justify-center items-center cursor-pointer"
-        aria-current="page"
-      >
-        <span class="material-symbols-outlined"> joystick </span>
-        <span>Platforms</span></a
-      >
-      <a
-        routerLink="games"
-        class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 text-white flex flex-row gap-1 justify-center items-center cursor-pointer"
-        aria-current="page"
-      >
-        <span class="material-symbols-outlined"> videogame_asset </span>
-        <span>Stores</span></a
-      >
-    </div>
+  <nav
+    class="ml-5 flex flex-col gap-4 items-baseline w-full rounded-sm p-2 mr-4"
+  >
+    <a
+      routerLink="games"
+      routerLinkActive="router-link-active"
+      class="rounded-md px-3 py-2 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-2 items-center cursor-pointer w-full p-2"
+      aria-current="page"
+    >
+      <span class="material-symbols-outlined nav-logo"> sports_esports </span
+      ><span>Games</span></a
+    >
+    <a
+      routerLink="developers"
+      class="rounded-md px-3 py-2 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-2 items-center cursor-pointer w-full p-2"
+      aria-current="page"
+    >
+      <span class="material-symbols-outlined nav-logo"> code_blocks </span>
+      <span>Developers</span></a
+    >
+    <a
+      routerLink="genres"
+      class="rounded-md px-3 py-2 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-2 items-center cursor-pointer w-full p-2"
+      aria-current="page"
+    >
+      <span class="material-symbols-outlined nav-logo"> gamepad </span>
+      <span>Genres</span></a
+    >
+    <a
+      routerLink="platforms"
+      class="rounded-md px-3 py-2 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-2 items-center cursor-pointer w-full p-2"
+      aria-current="page"
+    >
+      <span class="material-symbols-outlined nav-logo"> joystick </span>
+      <span>Platforms</span></a
+    >
+    <a
+      routerLink="stores"
+      class="rounded-md px-3 py-2 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-2 items-center cursor-pointer w-full p-2"
+      aria-current="page"
+    >
+      <span class="material-symbols-outlined nav-logo"> videogame_asset </span>
+      <span>Stores</span></a
+    >
   </nav>
 </aside>

@@ -3,11 +3,11 @@ import { GamesService } from '../../core/services/games.service';
 import { take } from 'rxjs';
 import { Game } from '../../core/interfaces/games.interface';
 import { GameCardComponent } from '../../shared/game-card/game-card.component';
-import { CommonModule } from '@angular/common';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-games',
-  imports: [GameCardComponent, CommonModule],
+  imports: [GameCardComponent, NgFor],
   templateUrl: './games.component.html',
   styleUrl: './games.component.css',
 })
