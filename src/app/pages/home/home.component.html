@@ -1,13 +1,13 @@
 <div
-  class="flex flex-col items-center justify-center min-h-[100vh] w-full gap-24"
+  class="flex flex-col items-center justify-center min-h-[100vh] w-full gap-32"
 >
   <div
-    class="bg-primary flex flex-row justify-around items-center min-h-full w-full"
+    class="bg-primary flex flex-col 2xl:flex-row xl:flex-col gap-16 justify-around items-center min-h-full w-full"
   >
     <div
       class="rounded-lg bg-accent-purple-2 relative w-45% flex flex-col gap-6 justify-center max-h-80 min-h-72 h-full w-xl px-24 py-9 bg-[url('/Vector1.png')] shadow-primary-300 shadow-2xl"
     >
-      <img src="/outline.png" class="absolute h-96 -right-22 -bottom-2" />
+      <img src="outline.png" class="absolute h-96 -right-22 -bottom-2" />
       <h1 class="text-text-primary font-bold text-2xl italic max-w-[60%] z-10">
         Join Giveaways Every Month! Lorem ipsum dolor sit amet.
       </h1>
@@ -23,5 +23,8 @@
       class="rounded-lg bg-primary-200 border border-accent-blue relative w-45% flex flex-col gap-6 justify-center max-h-80 min-h-72 h-full w-xl px-24 py-9 shadow-primary-300 shadow-2xl"
     ></div>
   </div>
-  <!-- <div><app-carousel /></div> -->
+  <div class="w-[80%] h-auto flex flex-col gap-32 overflow-hidden">
+    <h2 class="text-2xl font-bold">Top Rated Games:</h2>
+    <app-carousel />
+  </div>
 </div>

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { queryParams } from '../interfaces/queryParams.interface';
 import { API_KEY, API_URL } from '../../shared/api.consts';
+import { ApiResponse, Game } from '../interfaces/games.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class GamesService {
   private readonly URL: string = API_URL;
   private readonly API_KEY: string = API_KEY;
 
-  getGames(queryParams?: queryParams): Observable<any> {
+  getGames(queryParams?: queryParams): Observable<ApiResponse> {
     let params = new HttpParams().set('key', this.API_KEY);
 
     if (queryParams) {
@@ -40,8 +41,11 @@ export class GamesService {
       if (queryParams.metacritic) {
         params = params.set('metacritic', queryParams.metacritic);
       }
+      if (queryParams.dates) {
+        params = params.set('updated', queryParams.dates);
+      }
     }
 
-    return this.http.get(`${this.URL}/games`, { params });
+    return this.http.get<ApiResponse>(`${this.URL}/games`, { params });
   }
 }

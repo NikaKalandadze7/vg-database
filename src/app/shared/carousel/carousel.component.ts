@@ -18,7 +18,10 @@ export class CarouselComponent implements OnInit {
 
   ngOnInit(): void {
     this.gamesService
-      .getGames()
+      .getGames({
+        metacritic: '90,100',
+        page_size: 30,
+      })
       .pipe(take(1))
       .subscribe((response) => {
         this.featuredGames = response.results;
@@ -28,12 +31,15 @@ export class CarouselComponent implements OnInit {
 
   customOptions: OwlOptions = {
     loop: true,
-    mouseDrag: false,
-    touchDrag: false,
+    center: true,
+    items: 6,
+    margin: 10,
+    mouseDrag: true,
+    touchDrag: true,
     pullDrag: false,
     dots: false,
     navSpeed: 700,
-    navText: ['', ''],
+    navText: ['<', '>'],
     responsive: {
       0: {
         items: 1,
@@ -46,6 +52,9 @@ export class CarouselComponent implements OnInit {
       },
       940: {
         items: 4,
+      },
+      1280: {
+        items: 8,
       },
     },
     nav: true,

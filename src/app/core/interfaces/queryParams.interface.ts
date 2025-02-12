@@ -7,4 +7,5 @@ export interface queryParams {
   developers?: string;
   tags?: string;
   metacritic?: string;
+  dates?: string;
 }
