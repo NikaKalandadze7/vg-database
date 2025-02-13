@@ -48,4 +48,9 @@ export class GamesService {
 
     return this.http.get<ApiResponse>(`${this.URL}/games`, { params });
   }
+  getSpecificGame(id: string): Observable<Game> {
+    const params = new HttpParams().set('key', this.API_KEY);
+
+    return this.http.get<Game>(`${this.URL}/games/${id}`, { params });
+  }
 }

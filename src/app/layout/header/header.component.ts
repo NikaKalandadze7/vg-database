@@ -7,6 +7,7 @@ import { GamesService } from '../../core/services/games.service';
 import { take } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +17,8 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     FormsModule,
     CommonModule,
+    RouterLink,
+    RouterLinkActive,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',

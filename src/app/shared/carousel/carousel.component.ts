@@ -1,33 +1,17 @@
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
-import { Component, OnInit } from '@angular/core';
-import { take } from 'rxjs';
-import { GamesService } from '../../core/services/games.service';
-import { RouterModule } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { RouterLink, RouterModule } from '@angular/router';
 import { NgFor } from '@angular/common';
 import { Game } from '../../core/interfaces/games.interface';
 
 @Component({
   selector: 'app-carousel',
-  imports: [RouterModule, CarouselModule, NgFor],
+  imports: [RouterModule, CarouselModule, NgFor, RouterLink],
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.css',
 })
-export class CarouselComponent implements OnInit {
-  featuredGames: Game[] = [];
-  constructor(private gamesService: GamesService) {}
-
-  ngOnInit(): void {
-    this.gamesService
-      .getGames({
-        metacritic: '90,100',
-        page_size: 30,
-      })
-      .pipe(take(1))
-      .subscribe((response) => {
-        this.featuredGames = response.results;
-        console.log(this.featuredGames);
-      });
-  }
+export class CarouselComponent {
+  @Input() games!: Game[];
 
   customOptions: OwlOptions = {
     loop: true,
@@ -54,7 +38,7 @@ export class CarouselComponent implements OnInit {
         items: 4,
       },
       1280: {
-        items: 8,
+        items: 5,
       },
     },
     nav: true,

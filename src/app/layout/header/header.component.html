@@ -38,19 +38,23 @@
     </div>
   </div>
   <div class="mr-24 lg:mr-16 md:mr-8 sm:mr-5 flex flex-row gap-4">
-    <button
+    <a
+      routerLink="log-in"
       mat-menu-item
+      routerLinkActive="active"
       class="rounded-md px-3 py-2 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-1 items-center cursor-pointer w-full p-2"
     >
       <mat-icon>person</mat-icon>
       <span>Log In</span>
-    </button>
-    <button
+    </a>
+    <a
+      routerLink="register"
       mat-menu-item
+      routerLinkActive="active"
       class="rounded-md px-3 py-2 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-1 items-center cursor-pointer w-full p-2"
     >
       <mat-icon>person_add</mat-icon>
       <span>Register</span>
-    </button>
+    </a>
   </div>
 </div>

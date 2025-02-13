@@ -96,3 +96,9 @@ body {
 .nav-logo {
   font-size: 30px;
 }
+.auth-logo {
+  font-size: 58px;
+}
+.active {
+  background-color: var(--color-secondary-100);
+}
