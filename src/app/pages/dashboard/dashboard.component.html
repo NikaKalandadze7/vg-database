@@ -1,0 +1,77 @@
+<section class="container mx-auto px-8 py-10">
+  <div
+    class="relative flex flex-col bg-clip-border rounded-x text-text-primary"
+  >
+    <div class="p-6">
+      <div class="flex lg:gap-0 gap-6 flex-wrap justify-between items-center">
+        <div class="flex items-center gap-3">
+          <img
+            src=""
+            alt="avatar"
+            class="inline-block relative object-cover object-center w-12 h-12 rounded-lg"
+          />
+          <div *ngIf="user">
+            <h6
+              class="block antialiased tracking-normal font-sans text-base font-semibold leading-relaxed text-blue-gray-900"
+            >
+              Welcome, {{ user.firstName }} {{ user.lastName }}!
+            </h6>
+            <p
+              class="block antialiased font-sans text-sm font-light leading-normal text-text-muted"
+            >
+              {{ user.email }}
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <button
+            class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg border border-text-text-primary text-text-primary cursor-pointer hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] border-gray-300 flex items-center gap-2"
+            type="button"
+            data-ripple-dark="true"
+          >
+            <i class="fa fa-github text-base" aria-hidden="true"></i
+            >Github</button
+          ><button
+            class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg border border-text-text-primary text-text-primary cursor-pointer hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] border-gray-300 flex items-center gap-2"
+            type="button"
+            data-ripple-dark="true"
+          >
+            <i class="fa-brands fa-twitter" aria-hidden="true"></i
+            >Twitter</button
+          ><button
+            class="align-middle select-none font-sans font-bold text-center uppercase transition-all disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-3 px-6 rounded-lg border border-text-text-primary text-text-primary cursor-pointer hover:opacity-75 focus:ring focus:ring-gray-300 active:opacity-[0.85] border-gray-300 flex items-center gap-2"
+            type="button"
+            data-ripple-dark="true"
+          >
+            <i class="fa-brands fa-medium" aria-hidden="true"></i>Medium
+          </button>
+        </div>
+      </div>
+      <p
+        class="block antialiased font-sans text-sm font-light leading-normal text-text-primary mt-6"
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia aperiam
+        nisi dolorem, consequuntur enim quas consectetur delectus omnis earum
+        dolorum adipisci nam excepturi veniam possimus iure dolore magnam
+        doloribus id esse repellendus magni! Mollitia ipsa ut nihil iusto et,
+        minus inventore minima, magni totam illum eius corporis voluptatem
+        voluptas tenetur! <br />
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus,
+        iste?
+      </p>
+    </div>
+  </div>
+  <div class="bg-primary-100 w-full">
+    <div
+      class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"
+    >
+      <div
+        class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
+      >
+        <div *ngFor="let item of favoriteGamesSignal()">
+          <app-game-card [item]="item" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

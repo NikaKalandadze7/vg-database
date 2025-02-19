@@ -28,15 +28,34 @@
     <app-star-rating [rating]="item.rating" />
   </div>
 </a>
-<div class="flex flex-row gap-2">
-  <span
-    class="inline-flex items-center rounded-md bg-accent-blue px-2 py-1 text-xs font-medium text-text-primary ring-1 ring-gray-500/10 ring-inset"
-    >{{ item.genres[0].name }}</span
-  >
-  <div *ngIf="item.genres.length > 1">
+<div class="w-full flex flex-row justify-between content-between">
+  <div class="flex flex-row gap-2">
     <span
+      class="inline-flex items-center rounded-md bg-accent-blue px-2 py-1 text-xs font-medium text-text-primary ring-1 ring-gray-500/10 ring-inset"
+      >{{ item.genres[0].name }}</span
+    >
+    <span
+      *ngIf="item.genres.length > 1"
       class="inline-flex items-center rounded-md bg-accent-purple px-2 py-1 text-xs font-medium text-text-primary ring-1 ring-gray-500/10 ring-inset"
       >{{ item.genres[1].name }}</span
     >
+  </div>
+  <div *ngIf="loggedIn">
+    <button
+      *ngIf="isFavorite"
+      class="cursor-pointer"
+      (click)="addToFavorites(item)"
+    >
+      <span class="material-symbols-outlined fav-logo"> favorite </span>
+    </button>
+    <button
+      *ngIf="!isFavorite"
+      class="cursor-pointer"
+      (click)="removeFromFavorites(item.id)"
+    >
+      <span class="material-symbols-outlined fav-logo-active">
+        heart_check
+      </span>
+    </button>
   </div>
 </div>

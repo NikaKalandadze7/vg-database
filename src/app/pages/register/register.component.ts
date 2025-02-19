@@ -7,49 +7,56 @@ import {
   ReactiveFormsModule,
   FormGroup,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
+
 @Component({
   selector: 'app-register',
+  standalone: true,
   imports: [RouterLink, FormsModule, NgIf, ReactiveFormsModule],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.css',
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  submitted = false;
-
-  firstNameFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(1),
-  ]);
-  lastNameFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(1),
-  ]);
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-  passwordFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(8),
-    Validators.pattern(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-    ),
-  ]);
-  confirmPasswordFormControl = new FormControl('', [Validators.required]);
-
-  registerForm = new FormGroup({
-    firstName: this.firstNameFormControl,
-    lastName: this.lastNameFormControl,
-    email: this.emailFormControl,
-    password: this.passwordFormControl,
-    confirmPassword: this.confirmPasswordFormControl,
+  registrationForm = new FormGroup({
+    firstName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(1),
+    ]),
+    lastName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(1),
+    ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.pattern(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+      ),
+    ]),
+    confirmPassword: new FormControl('', [Validators.required]),
   });
 
+  errorMessage: string = '';
+
+  constructor(private authService: AuthService, private router: Router) {}
+
   onSubmit() {
-    this.submitted = true;
-    if (this.registerForm.valid) {
-      console.log('form submitted:', this.registerForm.value);
+    if (this.registrationForm.valid) {
+      const { firstName, lastName, email, password, confirmPassword } =
+        this.registrationForm.value;
+      if (password !== confirmPassword) {
+        this.errorMessage = 'Passwords do not match.';
+        return;
+      }
+      this.authService.register({
+        firstName: firstName!,
+        lastName: lastName!,
+        email: email!,
+        password: password!,
+      });
+      this.router.navigate(['/log-in']);
     }
   }
 }

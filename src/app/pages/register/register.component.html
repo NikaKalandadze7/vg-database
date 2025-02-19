@@ -11,7 +11,11 @@
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form class="space-y-6" action="#" method="POST" (submit)="onSubmit()">
+    <form
+      [formGroup]="registrationForm"
+      (ngSubmit)="onSubmit()"
+      class="space-y-6"
+    >
       <div class="flex flex-row items-center gap-4">
         <div class="w-1/2">
           <label
@@ -19,15 +23,13 @@
             class="block text-sm/6 font-medium text-text-primary"
             >First Name <span class="text-red-600">*</span></label
           >
-
           <div class="mt-2">
             <input
               type="text"
-              name="fName"
               id="fName"
-              [formControl]="firstNameFormControl"
+              formControlName="firstName"
               required
-              class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-100 sm:text-sm/6"
+              class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-black outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-secondary-100 sm:text-sm/6"
             />
           </div>
         </div>
@@ -37,57 +39,55 @@
             class="block text-sm/6 font-medium text-text-primary"
             >Last Name <span class="text-red-600">*</span></label
           >
-
           <div class="mt-2">
             <input
               type="text"
-              name="lName"
               id="lName"
-              [formControl]="lastNameFormControl"
+              formControlName="lastName"
               required
-              class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-100 sm:text-sm/6"
+              class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-black outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-secondary-100 sm:text-sm/6"
             />
           </div>
         </div>
       </div>
+
       <div class="flex flex-col min-h-8">
         <span
           *ngIf="
-            firstNameFormControl.hasError('required') &&
-            firstNameFormControl.touched
+            registrationForm.get('firstName')?.hasError('required') &&
+            registrationForm.get('firstName')?.touched
           "
           class="text-md font-thin text-red-500 text-xs"
         >
-          First name must be at least one character long.
+          First name is required.
         </span>
         <span
           *ngIf="
-            lastNameFormControl.hasError('required') &&
-            lastNameFormControl.touched
+            registrationForm.get('lastName')?.hasError('required') &&
+            registrationForm.get('lastName')?.touched
           "
           class="text-md font-thin text-red-500 text-xs"
         >
-          Last name must be at least one character long.
+          Last name is required.
         </span>
       </div>
+
       <div>
         <label for="email" class="block text-sm/6 font-medium text-text-primary"
           >Email address <span class="text-red-600">*</span></label
         >
-
         <div class="mt-2">
           <input
             type="email"
-            name="email"
             id="email"
-            autocomplete="email"
-            [formControl]="emailFormControl"
+            formControlName="email"
             required
-            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-100 sm:text-sm/6"
+            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-black outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-secondary-100 sm:text-sm/6"
           />
           <span
             *ngIf="
-              emailFormControl.hasError('required') && emailFormControl.touched
+              registrationForm.get('email')?.hasError('required') &&
+              registrationForm.get('email')?.touched
             "
             class="text-md font-thin text-red-500 text-xs"
           >
@@ -95,7 +95,8 @@
           </span>
           <span
             *ngIf="
-              emailFormControl.hasError('email') && emailFormControl.touched
+              registrationForm.get('email')?.hasError('email') &&
+              registrationForm.get('email')?.touched
             "
             class="text-md font-thin text-red-500 text-xs"
           >
@@ -105,27 +106,23 @@
       </div>
 
       <div>
-        <div class="flex items-center justify-between">
-          <label
-            for="password"
-            class="block text-sm/6 font-medium text-text-primary"
-            >Password <span class="text-red-600">*</span></label
-          >
-        </div>
+        <label
+          for="password"
+          class="block text-sm/6 font-medium text-text-primary"
+          >Password <span class="text-red-600">*</span></label
+        >
         <div class="mt-2">
           <input
             type="password"
-            name="password"
             id="password"
-            autocomplete="current-password"
-            [formControl]="passwordFormControl"
+            formControlName="password"
             required
-            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-100 sm:text-sm/6"
+            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-black outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-secondary-100 sm:text-sm/6"
           />
           <span
             *ngIf="
-              passwordFormControl.hasError('required') &&
-              passwordFormControl.touched
+              registrationForm.get('password')?.hasError('required') &&
+              registrationForm.get('password')?.touched
             "
             class="text-md font-thin text-red-500 text-xs"
           >
@@ -133,45 +130,49 @@
           </span>
           <span
             *ngIf="
-              passwordFormControl.hasError('pattern') &&
-              passwordFormControl.touched
+              registrationForm.get('password')?.hasError('pattern') &&
+              registrationForm.get('password')?.touched
             "
             class="text-md font-thin text-red-500 text-xs"
           >
             Password must contain at least one uppercase, one lowercase, one
-            number, one special character and must be at least 8 characters
-            long.
+            number, one special character, and be at least 8 characters long.
           </span>
         </div>
       </div>
+
       <div>
-        <div class="flex items-center justify-between">
-          <label
-            for="confirmPassword"
-            class="block text-sm/6 font-medium text-text-primary"
-            >Confirm Password <span class="text-red-600">*</span></label
-          >
-        </div>
+        <label
+          for="confirmPassword"
+          class="block text-sm/6 font-medium text-text-primary"
+          >Confirm Password <span class="text-red-600">*</span></label
+        >
         <div class="mt-2">
           <input
             type="password"
-            name="confirmPassword"
             id="confirmPassword"
-            [formControl]="confirmPasswordFormControl"
+            formControlName="confirmPassword"
             required
-            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-secondary-100 sm:text-sm/6"
+            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-black outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-secondary-100 sm:text-sm/6"
           />
           <span
             *ngIf="
-              confirmPasswordFormControl.hasError('required') &&
-              confirmPasswordFormControl.touched
+              registrationForm.get('confirmPassword')?.hasError('required') &&
+              registrationForm.get('confirmPassword')?.touched
             "
             class="text-md font-thin text-red-500 text-xs"
           >
-            Please Confirm Password.
+            Please confirm your password.
+          </span>
+          <span
+            *ngIf="errorMessage"
+            class="text-md font-thin text-red-500 text-xs"
+          >
+            {{ errorMessage }}
           </span>
         </div>
       </div>
+
       <div>
         <button
           type="submit"
@@ -183,11 +184,11 @@
     </form>
 
     <p class="mt-10 text-center text-sm/6 text-gray-500">
-      Already a Member?
+      Already a member?
       <a
         routerLink="/log-in"
         class="font-semibold text-accent-purple-2 hover:text-accent-purple cursor-pointer"
-        >Click here To Log In</a
+        >Click here to log in</a
       >
     </p>
   </div>

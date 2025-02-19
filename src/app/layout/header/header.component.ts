@@ -8,6 +8,7 @@ import { take } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -28,8 +29,16 @@ export class HeaderComponent {
   searchedGameData: Game[] = [];
   @Output() searchQueryChange = new EventEmitter<string>();
 
-  constructor(private gamesService: GamesService) {}
-
+  constructor(
+    private gamesService: GamesService,
+    private authService: AuthService
+  ) {}
+  get loggedIn(): boolean {
+    return this.authService.loggedIn();
+  }
+  logOut() {
+    this.authService.logout();
+  }
   onSearchInputChange() {
     this.searchQueryChange.emit(this.searchQuery);
     if (this.searchQuery.trim()) {
@@ -38,6 +47,7 @@ export class HeaderComponent {
       this.searchedGameData = [];
     }
   }
+
   searchGames(): void {
     this.gamesService
       .getGames({ search: this.searchQuery, page_size: 10 })

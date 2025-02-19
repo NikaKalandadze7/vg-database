@@ -7,39 +7,45 @@ import {
   ReactiveFormsModule,
   FormGroup,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-log-in',
+  standalone: true,
   imports: [RouterLink, FormsModule, NgIf, ReactiveFormsModule],
-
   templateUrl: './log-in.component.html',
-  styleUrl: './log-in.component.css',
+  styleUrls: ['./log-in.component.css'],
 })
 export class LogInComponent {
   submitted = false;
+  errorMessage: string = '';
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-  passwordFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(8),
-    Validators.pattern(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-    ),
-  ]);
-
-  registerForm = new FormGroup({
-    email: this.emailFormControl,
-    password: this.passwordFormControl,
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.pattern(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+      ),
+    ]),
   });
+
+  constructor(private logInService: AuthService, private router: Router) {}
 
   onSubmit() {
     this.submitted = true;
-    if (this.registerForm.valid) {
-      console.log('form submitted:', this.registerForm.value);
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      const success = this.logInService.login(email!, password!);
+      if (!success) {
+        this.errorMessage = 'Invalid email or password';
+
+        return;
+      } else {
+        this.router.navigate(['/dashboard']);
+      }
     }
   }
 }

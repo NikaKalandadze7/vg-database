@@ -96,9 +96,25 @@ body {
 .nav-logo {
   font-size: 30px;
 }
+
 .auth-logo {
   font-size: 58px;
 }
 .active {
   background-color: var(--color-secondary-100);
+}
+.fav-logo {
+  font-size: 30px;
+  color: white;
+}
+.fav-logo:hover {
+  color: red;
+}
+.fav-logo-active {
+  font-size: 30px;
+
+  color: red;
+}
+.fav-logo-active:hover {
+  color: white;
 }

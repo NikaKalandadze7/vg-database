@@ -37,7 +37,10 @@
       </div>
     </div>
   </div>
-  <div class="mr-24 lg:mr-16 md:mr-8 sm:mr-5 flex flex-row gap-4">
+  <div
+    *ngIf="!loggedIn"
+    class="mr-24 lg:mr-16 md:mr-8 sm:mr-5 flex flex-row gap-4"
+  >
     <a
       routerLink="log-in"
       mat-menu-item
@@ -56,5 +59,30 @@
       <mat-icon>person_add</mat-icon>
       <span>Register</span>
     </a>
+  </div>
+  <div
+    *ngIf="loggedIn"
+    class="mr-24 lg:mr-16 md:mr-8 sm:mr-5 flex flex-row gap-4"
+  >
+    <a
+      routerLink="dashboard"
+      mat-menu-item
+      routerLinkActive="active"
+      class="rounded-md px-3 py-2 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-1 items-center cursor-pointer w-full p-2"
+    >
+      <mat-icon>person</mat-icon>
+      <span>Dashboard</span>
+    </a>
+    <button
+      class="rounded-md px-3 py-2 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-1 items-center cursor-pointer w-full p-2"
+      (click)="logOut()"
+    >
+      <mat-icon
+        ><span class="material-symbols-outlined">
+          person_remove
+        </span></mat-icon
+      >
+      <span>Log Out</span>
+    </button>
   </div>
 </div>
