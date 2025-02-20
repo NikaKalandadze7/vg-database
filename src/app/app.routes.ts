@@ -8,6 +8,9 @@ import { LogInComponent } from './pages/log-in/log-in.component';
 import { DevelopersComponent } from './pages/developers/developers.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthGuardService } from './core/services/auth-guard.service';
+import { GenresComponent } from './pages/genres/genres.component';
+import { PlatformsComponent } from './pages/platforms/platforms.component';
+import { StoresComponent } from './pages/stores/stores.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,6 +18,10 @@ export const routes: Routes = [
   { path: 'games', component: GamesComponent },
   { path: 'games/:id', component: GameDetailsComponent },
   { path: 'developers', component: DevelopersComponent },
+  { path: 'genres', component: GenresComponent },
+  { path: 'platforms', component: PlatformsComponent },
+  { path: 'stores', component: StoresComponent },
+
   {
     path: 'dashboard',
     component: DashboardComponent,

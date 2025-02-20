@@ -1,0 +1,36 @@
+<div class="bg-primary-100 w-full">
+  <div
+    class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"
+  >
+    <div
+      class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
+    >
+      <div *ngFor="let item of genresData">
+        <a
+          href="#"
+          class="group relative block overflow-hidden h-64 w-64 rounded-2xl transition duration-300 ease-in-out"
+        >
+          <div
+            [ngStyle]="{
+              'background-image': 'url(' + item.image_background + ')'
+            }"
+            class="h-64 w-64 bg-cover bg-center flex justify-center items-center relative"
+          >
+            <div
+              class="absolute inset-0 bg-gray-800 opacity-50 group-hover:bg-gray-950 transition duration-300 ease-in-out"
+            ></div>
+            <div
+              class="relative z-10 flex justify-center items-center text-center"
+            >
+              <h3
+                class="mt-4 text-2xl text-primary font-bold group-hover:scale-110 transition duration-300 ease-in-out"
+              >
+                {{ item.name }}
+              </h3>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

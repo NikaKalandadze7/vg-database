@@ -44,18 +44,18 @@
     <button
       *ngIf="isFavorite"
       class="cursor-pointer"
-      (click)="addToFavorites(item)"
-    >
-      <span class="material-symbols-outlined fav-logo"> favorite </span>
-    </button>
-    <button
-      *ngIf="!isFavorite"
-      class="cursor-pointer"
       (click)="removeFromFavorites(item.id)"
     >
       <span class="material-symbols-outlined fav-logo-active">
         heart_check
       </span>
+    </button>
+    <button
+      *ngIf="!isFavorite"
+      class="cursor-pointer"
+      (click)="addToFavorites(item)"
+    >
+      <span class="material-symbols-outlined fav-logo"> favorite </span>
     </button>
   </div>
 </div>

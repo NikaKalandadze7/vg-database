@@ -1,0 +1,49 @@
+<div class="flex flex-row flex-wrap gap-6">
+  <mat-form-field>
+    <mat-label>Genres</mat-label>
+    <mat-select
+      [formControl]="genres"
+      multiple
+      (selectionChange)="onGenreSelectionChange($event)"
+    >
+      <mat-select-trigger>
+        {{ genres.value?.[0] || '' }}
+        <span
+          *ngIf="(genres.value?.length || 0) > 1"
+          class="example-additional-selection"
+        >
+          (+{{ (genres.value?.length || 0) - 1 }}
+          {{ (genres.value?.length || 0) === 2 ? "other" : "others" }})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let genre of genresData" [value]="genre.slug">
+        {{ genre.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Developers</mat-label>
+    <mat-select
+      [formControl]="developers"
+      multiple
+      (selectionChange)="onDeveloperSelectionChange($event)"
+    >
+      <mat-select-trigger>
+        {{ developers.value?.[0] || '' }}
+        <span
+          *ngIf="(developers.value?.length || 0) > 1"
+          class="example-additional-selection"
+        >
+          (+{{ (developers.value?.length || 0) - 1 }}
+          {{ (developers.value?.length || 0) === 2 ? "other" : "others" }})
+        </span>
+      </mat-select-trigger>
+      <mat-option
+        *ngFor="let developer of developersData"
+        [value]="developer.slug"
+      >
+        {{ developer.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

@@ -29,6 +29,9 @@ export class GamesService {
       if (queryParams.platforms) {
         params = params.set('platforms', queryParams.platforms);
       }
+      if (queryParams.genres) {
+        params = params.set('genres', queryParams.genres);
+      }
       if (queryParams.stores) {
         params = params.set('stores', queryParams.stores);
       }
@@ -52,5 +55,58 @@ export class GamesService {
     const params = new HttpParams().set('key', this.API_KEY);
 
     return this.http.get<Game>(`${this.URL}/games/${id}`, { params });
+  }
+
+  getGenres(queryParams?: queryParams): Observable<any> {
+    let params = new HttpParams().set('key', this.API_KEY);
+
+    if (queryParams) {
+      if (queryParams.page !== undefined) {
+        params = params.set('page', queryParams.page.toString());
+      }
+      if (queryParams.page_size !== undefined) {
+        params = params.set('page_size', queryParams.page_size.toString());
+      }
+    }
+    return this.http.get(`${this.URL}/genres`, { params });
+  }
+  getDevs(queryParams?: queryParams): Observable<any> {
+    let params = new HttpParams().set('key', this.API_KEY);
+
+    if (queryParams) {
+      if (queryParams.page !== undefined) {
+        params = params.set('page', queryParams.page.toString());
+      }
+      if (queryParams.page_size !== undefined) {
+        params = params.set('page_size', queryParams.page_size.toString());
+      }
+    }
+    return this.http.get(`${this.URL}/developers`, { params });
+  }
+  getPlatforms(queryParams?: queryParams): Observable<any> {
+    let params = new HttpParams().set('key', this.API_KEY);
+
+    if (queryParams) {
+      if (queryParams.page !== undefined) {
+        params = params.set('page', queryParams.page.toString());
+      }
+      if (queryParams.page_size !== undefined) {
+        params = params.set('page_size', queryParams.page_size.toString());
+      }
+    }
+    return this.http.get(`${this.URL}/platforms`, { params });
+  }
+  getStores(queryParams?: queryParams): Observable<any> {
+    let params = new HttpParams().set('key', this.API_KEY);
+
+    if (queryParams) {
+      if (queryParams.page !== undefined) {
+        params = params.set('page', queryParams.page.toString());
+      }
+      if (queryParams.page_size !== undefined) {
+        params = params.set('page_size', queryParams.page_size.toString());
+      }
+    }
+    return this.http.get(`${this.URL}/stores`, { params });
   }
 }

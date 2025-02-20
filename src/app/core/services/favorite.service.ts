@@ -1,34 +1,47 @@
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Game } from '../interfaces/games.interface';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FavoriteService {
-  private favoriteItemsSignal: WritableSignal<Game[]> = signal([]);
+  private favoriteItemsSubject = new BehaviorSubject<Game[]>([]);
+  favoriteItems$: Observable<Game[]> = this.favoriteItemsSubject.asObservable();
 
-  getFavoriteGames() {
-    return this.favoriteItemsSignal.asReadonly();
+  constructor(private authService: AuthService) {}
+
+  getFavoriteGames(): Game[] {
+    return this.favoriteItemsSubject.getValue();
   }
 
   addGameToFavorites(game: Game) {
-    const currentFavorites = this.favoriteItemsSignal();
-    const itemIndex = currentFavorites.findIndex((item) => item.id === game.id);
-
-    if (itemIndex === -1) {
-      this.favoriteItemsSignal.set([...currentFavorites, game]);
+    const currentFavorites = this.getFavoriteGames();
+    if (!currentFavorites.some((item) => item.id === game.id)) {
+      const updatedFavorites = [...currentFavorites, game];
+      this.favoriteItemsSubject.next(updatedFavorites);
+      this.saveFavorites(updatedFavorites);
     }
   }
 
   removeGameFromFavorites(gameId: number) {
-    const updatedFavorites = this.favoriteItemsSignal().filter(
+    const updatedFavorites = this.getFavoriteGames().filter(
       (item) => item.id !== gameId
     );
-    this.favoriteItemsSignal.set(updatedFavorites);
+    this.favoriteItemsSubject.next(updatedFavorites);
+    this.saveFavorites(updatedFavorites);
   }
 
-  isGameInFavorites(gameId: number): boolean {
-    const currentFavorites = this.favoriteItemsSignal();
-    return currentFavorites.some((item) => item.id === gameId);
+  isGameInFavorites(gameId: number): Observable<boolean> {
+    return this.favoriteItems$.pipe(
+      map((favorites) => favorites.some((item) => item.id === gameId))
+    );
+  }
+
+  private saveFavorites(favorites: Game[]): void {
+    if (this.authService.loggedIn()) {
+      localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
   }
 }

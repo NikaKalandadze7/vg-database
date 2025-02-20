@@ -1,4 +1,10 @@
-import { developers } from './developers.interface';
+export interface Developer {
+  id: number;
+  name: string;
+  slug: string;
+  games_count: number;
+  image_background: string;
+}
 
 export interface ApiResponse {
   count: number;
@@ -43,7 +49,7 @@ export interface Game {
   additions_count?: number;
   alternative_names?: string[];
   creators_count?: number;
-  developers?: developers[];
+  developers?: Developer[];
   dominant_color?: string;
   esrb_rating?: EsrbRating;
   game_series_count?: number;
@@ -89,7 +95,17 @@ export interface ParentPlatform {
     slug: string;
   };
 }
-
+export interface Platform {
+  id: number;
+  name: string;
+  slug: string;
+  image: string | null;
+  image_background: string;
+  year_start: number | null;
+  year_end: number | null;
+  games_count: number;
+  games: Game[];
+}
 export interface PlatformInfo {
   platform: {
     id: number;
@@ -112,7 +128,15 @@ export interface StoreInfo {
     domain: string;
   };
 }
-
+export interface Store {
+  id: number;
+  name: string;
+  slug: string;
+  domain: string;
+  image_background: string;
+  games_count: number;
+  games: Game[];
+}
 export interface Tag {
   id: number;
   name: string;

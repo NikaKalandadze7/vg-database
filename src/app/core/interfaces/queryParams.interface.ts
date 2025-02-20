@@ -8,4 +8,5 @@ export interface queryParams {
   tags?: string;
   metacritic?: string;
   dates?: string;
+  genres?: string;
 }
