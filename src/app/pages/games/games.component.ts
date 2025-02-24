@@ -22,7 +22,6 @@ import { queryParams } from '../../core/interfaces/queryParams.interface';
 })
 export class GamesComponent implements OnInit {
   gamesData: Game[] = [];
-
   loading: boolean = false;
   private filters: queryParams = {};
 
@@ -49,6 +48,7 @@ export class GamesComponent implements OnInit {
         });
     }, 500);
   }
+
   onGenreChange(selectedGenres: string[]): void {
     this.filters.genres = selectedGenres.length
       ? selectedGenres.join(',').toLowerCase()

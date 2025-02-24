@@ -18,7 +18,6 @@ import { AuthService } from '../../core/services/auth.service';
   styleUrls: ['./log-in.component.css'],
 })
 export class LogInComponent {
-  submitted = false;
   errorMessage: string = '';
 
   loginForm = new FormGroup({
@@ -35,7 +34,6 @@ export class LogInComponent {
   constructor(private logInService: AuthService, private router: Router) {}
 
   onSubmit() {
-    this.submitted = true;
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       const success = this.logInService.login(email!, password!);

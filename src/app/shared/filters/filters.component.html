@@ -7,7 +7,7 @@
       (selectionChange)="onGenreSelectionChange($event)"
     >
       <mat-select-trigger>
-        {{ genres.value?.[0] || '' }}
+        {{ genres.value?.[0]?.name || '' }}
         <span
           *ngIf="(genres.value?.length || 0) > 1"
           class="example-additional-selection"
@@ -16,7 +16,7 @@
           {{ (genres.value?.length || 0) === 2 ? "other" : "others" }})
         </span>
       </mat-select-trigger>
-      <mat-option *ngFor="let genre of genresData" [value]="genre.slug">
+      <mat-option *ngFor="let genre of genresData" [value]="genre">
         {{ genre.name }}
       </mat-option>
     </mat-select>
@@ -29,7 +29,7 @@
       (selectionChange)="onDeveloperSelectionChange($event)"
     >
       <mat-select-trigger>
-        {{ developers.value?.[0] || '' }}
+        {{ developers.value?.[0]?.name || '' }}
         <span
           *ngIf="(developers.value?.length || 0) > 1"
           class="example-additional-selection"
@@ -38,10 +38,7 @@
           {{ (developers.value?.length || 0) === 2 ? "other" : "others" }})
         </span>
       </mat-select-trigger>
-      <mat-option
-        *ngFor="let developer of developersData"
-        [value]="developer.slug"
-      >
+      <mat-option *ngFor="let developer of developersData" [value]="developer">
         {{ developer.name }}
       </mat-option>
     </mat-select>

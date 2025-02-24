@@ -30,12 +30,10 @@ export const routes: Routes = [
   {
     path: 'log-in',
     component: LogInComponent,
-    canActivate: [!AuthGuardService],
   },
   {
     path: 'register',
     component: RegisterComponent,
-    canActivate: [!AuthGuardService],
   },
   { path: '**', component: NotFoundComponent },
 ];

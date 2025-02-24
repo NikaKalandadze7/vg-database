@@ -18,6 +18,8 @@ import { AuthService } from '../../core/services/auth.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
+  errorMessage: string = '';
+
   registrationForm = new FormGroup({
     firstName: new FormControl('', [
       Validators.required,
@@ -37,8 +39,6 @@ export class RegisterComponent {
     ]),
     confirmPassword: new FormControl('', [Validators.required]),
   });
-
-  errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 

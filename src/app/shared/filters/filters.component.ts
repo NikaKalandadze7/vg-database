@@ -22,11 +22,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './filters.component.css',
 })
 export class FiltersComponent implements OnInit {
-  genres = new FormControl<string[]>([]);
-  developers = new FormControl<string[]>([]);
-
   @Output() genreChange = new EventEmitter<string[]>();
   @Output() developerChange = new EventEmitter<string[]>();
+
+  genres = new FormControl<Genre[]>([]);
+  developers = new FormControl<Developer[]>([]);
 
   genresData: Genre[] = [];
   developersData: Developer[] = [];
@@ -40,8 +40,9 @@ export class FiltersComponent implements OnInit {
       .subscribe((response) => {
         this.genresData = response.results;
       });
+
     this.gamesService
-      .getDevs({ page_size: 20 })
+      .getDevs({ page_size: 80 })
       .pipe(take(1))
       .subscribe((response) => {
         this.developersData = response.results;
@@ -50,13 +51,13 @@ export class FiltersComponent implements OnInit {
   }
 
   onGenreSelectionChange(event: MatSelectChange): void {
-    const selectedGenres = event.value.map((genre: Genre) => genre.name);
+    const selectedGenres = event.value.map((genre: Genre) => genre.slug);
     this.genreChange.emit(selectedGenres);
   }
 
   onDeveloperSelectionChange(event: MatSelectChange): void {
     const selectedDevelopers = event.value.map(
-      (developer: Developer) => developer.name
+      (developer: Developer) => developer.slug
     );
     this.developerChange.emit(selectedDevelopers);
   }

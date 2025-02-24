@@ -14,13 +14,12 @@ import { GameCardComponent } from '../../shared/game-card/game-card.component';
 })
 export class DashboardComponent implements OnInit {
   user: any;
-  userKey: string = 'user';
   favoriteGames$!: Observable<Game[]>;
 
   constructor(private favoriteService: FavoriteService) {}
 
   ngOnInit() {
-    const storedUser = localStorage.getItem(this.userKey);
+    const storedUser = localStorage.getItem('user');
     if (storedUser) {
       this.user = JSON.parse(storedUser);
     }
