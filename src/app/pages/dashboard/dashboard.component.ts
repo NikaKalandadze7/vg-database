@@ -8,6 +8,9 @@ import {
   selectFavoriteCount,
   selectFavorites,
 } from '../../shared/store/favorite.selectors';
+import { AuthService } from '../../core/services/auth.service';
+import { User } from '../../core/interfaces/user';
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -16,12 +19,15 @@ import {
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-  user: any;
   favoriteGames$!: Observable<Game[]>;
   count$: Observable<number>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, public authService: AuthService) {
     this.favoriteGames$ = this.store.select(selectFavorites);
     this.count$ = this.store.select(selectFavoriteCount);
+  }
+
+  get user(): User | null {
+    return this.authService.currentUser();
   }
 }

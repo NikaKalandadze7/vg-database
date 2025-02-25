@@ -7,7 +7,7 @@ import { GamesService } from '../../core/services/games.service';
 import { take } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
@@ -33,13 +33,15 @@ export class HeaderComponent {
 
   constructor(
     private gamesService: GamesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
   get loggedIn(): boolean {
     return this.authService.loggedIn();
   }
   logOut() {
     this.authService.logout();
+    this.router.navigate(['/home']);
   }
   onSearchInputChange() {
     this.searchQueryChange.emit(this.searchQuery);

@@ -53,7 +53,6 @@ export class FiltersComponent implements OnInit {
       .pipe(take(1))
       .subscribe((response) => {
         this.developersData = response.results;
-        console.log(response.results);
       });
   }
 
