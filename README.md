@@ -1,59 +1,21 @@
-# VgDatabase
-
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
-
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Usage
+Registering a User
+Navigate to the Register page (or section) of the app.
+Fill in the required user details (e.g., first name, last name, email, and password).
+When you submit the registration form, the application calls the AuthService.register() method. This method:
+Saves the user data to local storage.
+Sets the currentUser signal with the new user.
+Updates the loggedIn signal to true.
+Logging In
+Navigate to the Login page.
+Enter your email and password.
+When you submit the login form, the application calls the AuthService.login() method. This method:
+Retrieves the stored user from local storage.
+Compares the provided credentials with the stored user data.
+If the credentials match, sets loggedIn to true and updates currentUser with the stored data.
+If the credentials do not match, an error message is logged to the console.
+Logging Out
+To log out, the AuthService.logout() method can be called. This method:
+Sets loggedIn to false.
+Clears the currentUser signal.
+The user dashboard or other protected views will no longer display user-specific information.
