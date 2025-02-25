@@ -17,5 +17,12 @@
         <app-game-card [item]="item" />
       </div>
     </div>
+    <div class="flex justify-center content-center mt-16">
+      <app-pagination
+        [currentPage]="currentPage"
+        [totalPages]="totalPages"
+        (pageChange)="onPageChange($event)"
+      />
+    </div>
   </div>
 </div>

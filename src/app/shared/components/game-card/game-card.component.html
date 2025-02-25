@@ -42,7 +42,7 @@
   </div>
   <div *ngIf="loggedIn">
     <button
-      *ngIf="isFavorite"
+      *ngIf="isFavorite$ | async"
       class="cursor-pointer"
       (click)="removeFromFavorites(item.id)"
     >
@@ -51,9 +51,9 @@
       </span>
     </button>
     <button
-      *ngIf="!isFavorite"
+      *ngIf="!(isFavorite$ | async)"
       class="cursor-pointer"
-      (click)="addToFavorites(item)"
+      (click)="addToFavorites()"
     >
       <span class="material-symbols-outlined fav-logo"> favorite </span>
     </button>

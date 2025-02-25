@@ -1,11 +1,17 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectChange } from '@angular/material/select';
 
-import { Developer, Genre } from '../../core/interfaces/games.interface';
-import { GamesService } from '../../core/services/games.service';
+import { Developer, Genre } from '../../../core/interfaces/games.interface';
+import { GamesService } from '../../../core/services/games.service';
 import { take } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
@@ -20,6 +26,7 @@ import { CommonModule } from '@angular/common';
   ],
   templateUrl: './filters.component.html',
   styleUrl: './filters.component.css',
+  encapsulation: ViewEncapsulation.None,
 })
 export class FiltersComponent implements OnInit {
   @Output() genreChange = new EventEmitter<string[]>();

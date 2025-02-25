@@ -2,7 +2,7 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { Component, Input } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 import { NgFor } from '@angular/common';
-import { Game } from '../../core/interfaces/games.interface';
+import { Game } from '../../../core/interfaces/games.interface';
 
 @Component({
   selector: 'app-carousel',

@@ -1,15 +1,176 @@
-<div class="flex items-center h-24 px-6 bg-primary-300 w-full justify-between">
-  <div class="w-[40%]">
+<div
+  class="flex items-center sm:flex-row flex-col bg-primary-300 w-full h-32 sm:h-24 px-6 gap-2"
+>
+  <div class="flex content-center justify-between w-full mt-5">
+    <div class="xl:hidden relative">
+      <a
+        class="text-2xl font-semibold mb-8 cursor-pointer w-full p-2 hover:text-accent-purple-2"
+        routerLink="home"
+        >Game DB</a
+      >
+      <button
+        class="px-4 py-2 bg-primary-500 text-white rounded-md focus:outline-none cursor-pointer"
+        (click)="toggleDropdown()"
+      >
+        <span class="material-symbols-outlined" *ngIf="!isDropdownOpen">
+          menu
+        </span>
+        <span class="material-symbols-outlined" *ngIf="isDropdownOpen">
+          menu_open
+        </span>
+      </button>
+      <nav
+        *ngIf="isDropdownOpen"
+        class="absolute mt-2 w-48 bg-primary-300 border border-secondary-200 shadow-lg rounded-md z-50"
+      >
+        <a
+          routerLink="games"
+          routerLinkActive="active"
+          class="lg:px-3 lg:py-2 px-1 py-1 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-2 items-center cursor-pointer w-full p-2"
+          aria-current="page"
+        >
+          <span class="material-symbols-outlined nav-logo">
+            sports_esports </span
+          ><span>Games</span></a
+        >
+        <a
+          routerLink="developers"
+          routerLinkActive="active"
+          class="lg:px-3 lg:py-2 px-1 py-1 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-2 items-center cursor-pointer w-full p-2"
+          aria-current="page"
+        >
+          <span class="material-symbols-outlined nav-logo"> code_blocks </span>
+          <span>Developers</span></a
+        >
+        <a
+          routerLink="genres"
+          routerLinkActive="active"
+          class="lg:px-3 lg:py-2 px-1 py-1 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-2 items-center cursor-pointer w-full p-2"
+          aria-current="page"
+        >
+          <span class="material-symbols-outlined nav-logo"> gamepad </span>
+          <span>Genres</span></a
+        >
+        <a
+          routerLink="platforms"
+          routerLinkActive="active"
+          class="lg:px-3 lg:py-2 px-1 py-1 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-2 items-center cursor-pointer w-full p-2"
+          aria-current="page"
+        >
+          <span class="material-symbols-outlined nav-logo"> joystick </span>
+          <span>Platforms</span></a
+        >
+        <a
+          routerLink="stores"
+          routerLinkActive="active"
+          class="lg:px-3 lg:py-2 px-1 py-1 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-2 items-center cursor-pointer w-full p-2"
+          aria-current="page"
+        >
+          <span class="material-symbols-outlined nav-logo">
+            videogame_asset
+          </span>
+          <span>Stores</span></a
+        >
+      </nav>
+    </div>
+    <div class="w-[40%] sm:block hidden">
+      <div class="relative w-full">
+        <input
+          type="text"
+          placeholder="Search Games..."
+          class="w-full h-12 p-2 pl-10 rounded-md lg:ml-16 md:ml-8 ml-5 bg-secondary-100 text-text-primary font-thin text-sm sm:text-base lg:text-lg tracking-wider focus:outline-none focus:ring-2 focus:ring-accent-blue"
+          [(ngModel)]="searchQuery"
+          (keyup)="onSearchInputChange()"
+        />
+        <svg
+          class="absolute left-7 md:left-10 lg:left-20 top-3 w-6 h-6 text-text-secondary"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path
+            d="M10 2a8 8 0 015.293 13.707l3.387 3.387a1 1 0 01-1.414 1.414l-3.387-3.387A8 8 0 1110 2zm0 2a6 6 0 104.242 10.242A6 6 0 0010 4z"
+          />
+        </svg>
+      </div>
+      <div
+        *ngIf="searchQuery && searchedGameData.length > 0"
+        class="absolute w-[50%] xl:w-[25%] mt-1 lg:ml-16 md:ml-8 ml-5 bg-secondary-200 border border-accent-blue rounded-md shadow-md"
+      >
+        <div *ngFor="let item of searchedGameData">
+          <div
+            class="flex items-center p-2 cursor-pointer text-text-primary hover:bg-accent-yellow hover:text-primary-200 font-bold"
+          >
+            <img
+              [src]="item.background_image"
+              [alt]="item.slug"
+              class="h-12 w-12 rounded-md"
+            />
+            <h5 class="ml-2 text-sm">{{ item.name }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="!loggedIn"
+      class="xl:mr-64 md:mr-8 sm:mr-5 -mr-5 flex flex-row gap-2 lg:gap-4 flex-wrap sm:flex-nowrap"
+    >
+      <a
+        routerLink="log-in"
+        mat-menu-item
+        routerLinkActive="active"
+        class="rounded-md lg:px-3 lg:py-2 px-1 py-1 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-1 items-center cursor-pointer lg:p-2"
+      >
+        <mat-icon>person</mat-icon>
+        <span class="lg:block sm:hidden block">Log In</span>
+      </a>
+      <a
+        routerLink="register"
+        mat-menu-item
+        routerLinkActive="active"
+        class="rounded-md lg:px-3 lg:py-2 px-1 py-1 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-1 items-center cursor-pointer lg:p-2"
+      >
+        <mat-icon>person_add</mat-icon>
+        <span class="lg:block sm:hidden block">Register</span>
+      </a>
+    </div>
+    <div
+      *ngIf="loggedIn"
+      class="xl:mr-64 md:mr-8 sm:mr-5 flex flex-row gap-2 lg:gap-4 flex-wrap sm:flex-nowrap"
+    >
+      <a
+        routerLink="dashboard"
+        mat-menu-item
+        routerLinkActive="active"
+        class="rounded-md lg:px-3 lg:py-2 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-1 items-center cursor-pointer lg:p-2"
+      >
+        <mat-icon>person</mat-icon>
+        <span class="lg:block sm:hidden block">Dashboard</span>
+      </a>
+      <button
+        class="rounded-md lg:px-3 lg:py-2 px-1 py-1 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-1 items-center cursor-pointer lg:p-2"
+        (click)="logOut()"
+      >
+        <mat-icon
+          ><span class="material-symbols-outlined">
+            person_remove
+          </span></mat-icon
+        >
+        <span class="lg:block sm:hidden block">Log Out</span>
+      </button>
+    </div>
+  </div>
+  <div class="w-[70%] sm:hidden block">
     <div class="relative w-full">
       <input
         type="text"
         placeholder="Search Games..."
-        class="w-full h-12 p-2 pl-10 rounded-md ml-24 lg:ml-16 md:ml-8 sm:ml-5 bg-secondary-100 text-text-primary font-thin text-lg tracking-wider focus:outline-none focus:ring-2 focus:ring-accent-blue"
+        class="w-full h-10 p-2 pl-10 rounded-md lg:ml-16 md:ml-8 ml-5 bg-secondary-100 text-text-primary font-thin text-sm sm:text-base lg:text-lg tracking-wider focus:outline-none focus:ring-2 focus:ring-accent-blue"
         [(ngModel)]="searchQuery"
         (keyup)="onSearchInputChange()"
       />
       <svg
-        class="absolute left-20 top-3 w-6 h-6 text-text-secondary"
+        class="absolute left-7 md:left-10 lg:left-20 top-3 w-6 h-6 text-text-secondary"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
@@ -21,7 +182,7 @@
     </div>
     <div
       *ngIf="searchQuery && searchedGameData.length > 0"
-      class="absolute w-[25%] mt-1 ml-24 lg:ml-16 md:ml-8 sm:ml-5 bg-secondary-200 border border-accent-blue rounded-md shadow-md"
+      class="absolute w-[60%] xl:w-[25%] mt-1 lg:ml-16 md:ml-8 ml-5 bg-secondary-200 border border-accent-blue rounded-md shadow-md"
     >
       <div *ngFor="let item of searchedGameData">
         <div
@@ -36,53 +197,5 @@
         </div>
       </div>
     </div>
-  </div>
-  <div
-    *ngIf="!loggedIn"
-    class="mr-24 lg:mr-16 md:mr-8 sm:mr-5 flex flex-row gap-4"
-  >
-    <a
-      routerLink="log-in"
-      mat-menu-item
-      routerLinkActive="active"
-      class="rounded-md px-3 py-2 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-1 items-center cursor-pointer w-full p-2"
-    >
-      <mat-icon>person</mat-icon>
-      <span>Log In</span>
-    </a>
-    <a
-      routerLink="register"
-      mat-menu-item
-      routerLinkActive="active"
-      class="rounded-md px-3 py-2 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-1 items-center cursor-pointer w-full p-2"
-    >
-      <mat-icon>person_add</mat-icon>
-      <span>Register</span>
-    </a>
-  </div>
-  <div
-    *ngIf="loggedIn"
-    class="mr-24 lg:mr-16 md:mr-8 sm:mr-5 flex flex-row gap-4"
-  >
-    <a
-      routerLink="dashboard"
-      mat-menu-item
-      routerLinkActive="active"
-      class="rounded-md px-3 py-2 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-1 items-center cursor-pointer w-full p-2"
-    >
-      <mat-icon>person</mat-icon>
-      <span>Dashboard</span>
-    </a>
-    <button
-      class="rounded-md px-3 py-2 text-base font-light hover:bg-gray-700 text-white flex flex-row gap-1 items-center cursor-pointer w-full p-2"
-      (click)="logOut()"
-    >
-      <mat-icon
-        ><span class="material-symbols-outlined">
-          person_remove
-        </span></mat-icon
-      >
-      <span>Log Out</span>
-    </button>
   </div>
 </div>

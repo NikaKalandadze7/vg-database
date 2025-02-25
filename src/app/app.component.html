@@ -1,14 +1,17 @@
 <div class="flex flex-col h-screen bg-primary-100 text-text-primary">
   <app-sidebar
-    class="w-64 fixed h-screen border-r border-solid border-secondary-200"
+    class="w-64 fixed h-screen border-r border-solid border-secondary-200 xl:block hidden"
   ></app-sidebar>
-  <div class="flex flex-col flex-1 ml-64">
+
+  <div class="flex flex-col flex-1 xl:ml-64">
     <app-header
-      class="w-full fixed top-0 left-64 pr-64 right-0 shadow-md border-b border-solid border-secondary-200 z-50"
+      class="w-full fixed top-0 xl:left-64 right-0 shadow-md border-b border-solid border-secondary-200 z-50"
     ></app-header>
+
     <div class="flex-1 overflow-auto mt-24">
       <router-outlet></router-outlet>
     </div>
   </div>
+
   <app-footer />
 </div>

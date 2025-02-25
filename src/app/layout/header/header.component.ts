@@ -27,6 +27,8 @@ import { AuthService } from '../../core/services/auth.service';
 export class HeaderComponent {
   searchQuery = '';
   searchedGameData: Game[] = [];
+  isDropdownOpen = false;
+
   @Output() searchQueryChange = new EventEmitter<string>();
 
   constructor(
@@ -56,5 +58,8 @@ export class HeaderComponent {
         this.searchedGameData = response.results;
         console.log(response.results);
       });
+  }
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 }
