@@ -19,7 +19,6 @@ export class GenresComponent {
       .pipe(take(1))
       .subscribe((response) => {
         this.genresData = response.results;
-        console.log(response.results);
       });
   }
 }

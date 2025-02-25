@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
-import { CarouselComponent } from '../../shared/carousel/carousel.component';
+import { CarouselComponent } from '../../shared/components/carousel/carousel.component';
 import { GamesService } from '../../core/services/games.service';
 import { Game } from '../../core/interfaces/games.interface';
 import { take } from 'rxjs';

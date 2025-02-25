@@ -1,10 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FavoriteService } from '../../core/services/favorite.service';
 import { Game } from '../../core/interfaces/games.interface';
-import { GameCardComponent } from '../../shared/game-card/game-card.component';
-
+import { GameCardComponent } from '../../shared/components/game-card/game-card.component';
+import { Store } from '@ngrx/store';
+import {
+  selectFavoriteCount,
+  selectFavorites,
+} from '../../shared/store/favorite.selectors';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -12,17 +15,13 @@ import { GameCardComponent } from '../../shared/game-card/game-card.component';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   user: any;
   favoriteGames$!: Observable<Game[]>;
+  count$: Observable<number>;
 
-  constructor(private favoriteService: FavoriteService) {}
-
-  ngOnInit() {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      this.user = JSON.parse(storedUser);
-    }
-    this.favoriteGames$ = this.favoriteService.favoriteItems$;
+  constructor(private store: Store) {
+    this.favoriteGames$ = this.store.select(selectFavorites);
+    this.count$ = this.store.select(selectFavoriteCount);
   }
 }

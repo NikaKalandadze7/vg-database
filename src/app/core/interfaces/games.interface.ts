@@ -53,7 +53,7 @@ export interface Game {
   dominant_color?: string;
   esrb_rating?: EsrbRating;
   game_series_count?: number;
-  metacritic_platforms?: any[]; // refine if needed
+  metacritic_platforms?: any[];
   movies_count?: number;
   parent_achievements_count?: number;
   parents_count?: number;

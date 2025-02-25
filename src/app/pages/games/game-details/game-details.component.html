@@ -23,9 +23,18 @@
               />
             </div>
             <div class="flex -mx-2 mb-4">
-              <div class="w-1/2 px-2">
+              <div *ngIf="loggedIn" class="w-1/2 px-2">
                 <button
-                  class="w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-full font-bold hover:bg-gray-300 dark:hover:bg-gray-600"
+                  *ngIf="isFavorite$ | async"
+                  (click)="removeFromFavorites(game.id)"
+                  class="w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-full font-bold hover:bg-gray-300 dark:hover:bg-gray-600 cursor-pointer"
+                >
+                  Remove from Wishlist
+                </button>
+                <button
+                  *ngIf="!(isFavorite$ | async)"
+                  (click)="addToFavorites()"
+                  class="w-full bg-accent-blue dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-full font-bold hover:bg-gray-300 dark:hover:bg-accent-purple cursor-pointer"
                 >
                   Add to Wishlist
                 </button>
@@ -134,11 +143,10 @@
         <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 text-center">
           {{ game.description_raw }}
         </p>
-        <div class="w-[80%] h-auto flex flex-col gap-12 overflow-hidden">
-          <h4>More From this Developer:</h4>
-
-          <app-carousel [games]="gamesFromSameDev" />
-        </div>
+      </div>
+      <h4 class="text-2xl font-bold my-8">More From this Developer:</h4>
+      <div class="w-[80%] h-auto flex flex-col gap-12 overflow-hidden">
+        <app-carousel [games]="gamesFromSameDev" />
       </div>
     </div>
   </div>
